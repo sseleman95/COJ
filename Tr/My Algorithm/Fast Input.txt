@@ -1,0 +1,22 @@
+//read
+const int BUFFSIZE = 10240;
+char BUFF[BUFFSIZE + 1], *p = BUFF;
+int CHAR, SIGN, BYTES = 0;
+#define GETCHAR(c) {\
+if(p-BUFF==BYTES && (BYTES==0 || BYTES==BUFFSIZE)){BYTES=fread(BUFF,1,BUFFSIZE,stdin);p=BUFF;}\
+if(p-BUFF==BYTES && (BYTES>0 && BYTES<BUFFSIZE)){BUFF[0]=0;p=BUFF;}\
+c = *p++;\
+}
+#define DIGIT(c) (((c) >= '0') && ((c) <= '9'))
+#define LETTER(c) ((((c) >= 'a') && ((c) <= 'z')) || (((c) >= 'A') && ((c) <= 'Z')))
+#define MINUS(c) ((c)== '-')
+#define GETNUMBER(n) {\
+n = 0;SIGN = 1; do{GETCHAR(CHAR);}while(!(DIGIT(CHAR)|| MINUS(CHAR)));\
+if(MINUS(CHAR)){SIGN = -1; GETCHAR(CHAR);}\
+while(DIGIT(CHAR)){n = 10*n + CHAR-'0'; GETCHAR(CHAR);}if(SIGN == -1){n = -n;}\
+}
+#define GETWORD(s,i) {\
+i = 0;do{GETCHAR(s[i]);}while(!LETTER(s[i]));\
+do{GETCHAR(s[++i]);}while(LETTER(s[i]));\
+s[i]=0;\
+}

@@ -1,0 +1,41 @@
+#define oo 1000000000
+
+//c cost matrix
+//p predecessor matrix
+//V max quantity of nodes
+
+void print_path(int i, int j, int p[100][100]) {
+	if (i != j)
+		print_path(i, p[i][j], p);
+	printf("%d\n", j);
+}
+
+void initialize(int V, int c[100][100], int p[100][100]) {
+	for (int i = 0; i < V; ++i)
+		for (int j = 0; j < V; ++j)
+			p[i][j] = i, c[i][j] = oo;
+}
+
+void Floyd(int V, int c[100][100], int p[100][100]) {
+	int w;
+	for (int k = 0; k < V; k++)
+		for (int i = 0; i < V; i++)
+			if (c[i][k] < oo)
+				for (int j = 0; j < V; j++) {
+					//condition to find if there is a path between every pair of vertex
+					//c[i][j] = c[i][j] || (c[i][k] && c[k][j])
+					//condition to find minimax
+					//c[i][j] = min(c[i][j], max(c[i][k], c[k][j]))
+					//condition to find maximin
+					//c[i][j] = max(c[i][j], min(c[i][k], c[k][j]))
+					//condition to find safest path, c[i][j] contain the probability of arrive safe between i-j, c[i][i]=1
+					//c[i][j] = max(c[i][j], c[i][k] * c[k][j]), oo most by change with 0
+					if (c[k][j] < oo) {
+						w = c[i][k] + c[k][j];
+						if (w < c[i][j]) {
+							c[i][j] = w;
+							p[i][j] = p[k][j];
+						}
+					}
+				}
+}

@@ -1,0 +1,69 @@
+#include <algorithm>
+#include <numeric>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <queue>
+#include <set>
+#include <map>
+#include <stack>
+#include <cstdio>
+#include <cstdlib>
+#include <cctype>
+#include <cassert>
+#include <cmath>
+#include <complex>
+#include <memory.h>
+
+using namespace std;
+const int oo = 1000000000;
+int c[100][100];
+
+void Floyd(int V) {
+	int w;
+	for (int k = 0; k < V; k++)
+		for (int i = 0; i < V; i++)
+			if (c[i][k] < oo)
+				for (int j = 0; j < V; j++) {
+					if (c[k][j] < oo) {
+						w = c[i][k] + c[k][j];
+						if (w < c[i][j]) {
+							c[i][j] = w;
+						}
+					}
+				}
+}
+
+int main() {
+	//freopen("f", "r", stdin);
+	int cas;
+	scanf("%d", &cas);
+	while (cas--) {
+		int n, m, q;
+		scanf("%d%d", &n, &m);
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				c[i][j] = (i == j) ? 0 : oo;
+			}
+		}
+		for (int i = 0; i < m; ++i) {
+			int u, v, w;
+			scanf("%d%d%d", &u, &v, &w);
+			u--, v--;
+			if (c[u][v] > w)
+				c[u][v] = c[v][u] = w;
+		}
+		Floyd(n);
+		scanf("%d", &q);
+		while (q--) {
+			int u, v;
+			scanf("%d%d", &u, &v);
+			u--, v--;
+			printf("%d\n", (c[u][v] == oo) ? -1 : c[u][v]);
+		}
+		if (cas)
+			printf("\n");
+	}
+	return 0;
+}

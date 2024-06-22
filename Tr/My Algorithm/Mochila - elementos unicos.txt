@@ -1,0 +1,8 @@
+//array contiene el peso de los objetos
+//mat es donde se va ha computar la dinamica
+
+sort(array + 1, array + n);
+	for (int i = 1; i <= n; ++i)
+		for (int j = 1; j <= h; ++j)
+			(array[i] <= j) ? mat[i][j] = max(mat[i - 1][j], mat[i - 1][j - array[i]] + array[i]):mat[i][j] = mat[i - 1][j];
+	printf("%d", mat[n][h]);

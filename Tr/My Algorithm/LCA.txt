@@ -1,0 +1,37 @@
+//L es el nivel del nodo, T es el padre del nodo, P es donde se va a computar el SPT
+
+int L[MAXN], T[MAXN], P[MAXN][LOGMAXN];
+void SPT(int N) {
+	for (int i = 0; i < N; ++i)
+		for (int j = 0; 1 << j < N; ++j)
+			P[i][j] = -1;
+	for (int i = 0; i < N; ++i)
+		P[i][0] = T[i];
+	for (int j = 1; 1 << j < N; j++)
+		for (int i = 0; i < N; i++)
+			if (P[i][j - 1] != -1)
+				P[i][j] = P[P[i][j - 1]][j - 1];
+}
+
+int lca(int p, int q) {
+	int log, lc;
+	if (L[p] < L[q])
+		swap(p, q);
+	for (log = 1; 1 << log <= L[p]; log++)
+		;
+	log--;
+	for (int i = log; i >= 0; i--)
+		if (L[p] - (1 << i) >= L[q])
+			p = P[p][i];
+	if (p == q)
+		lc = p;
+	else {
+		for (int i = log; i >= 0; i--)
+			if (P[p][i] != -1 && P[p][i] != P[q][i]) {
+				p = P[p][i];
+				q = P[q][i];
+			}
+		lc = T[p];
+	}
+	return lc;
+}

@@ -1,0 +1,15 @@
+int capacidad, cantidadEl;
+int APORTE[10010], PESOS[10010], M[10010];
+int main() {
+	
+		memset(M, 0, sizeof(M));
+		scanf("%d%d", &capacidad, &cantidadEl);
+		for (int i = 0; i < cantidadEl; ++i)
+			scanf("%d%d", &APORTE[i], &PESOS[i]);
+		for (int i = PESOS[0]; i <= capacidad; i++)
+			M[i] = (i / PESOS[0]) * (APORTE[0]);
+		for (int i = 1; i < cantidadEl; i++)
+			for (int k = PESOS[i]; k <= capacidad; k++)
+				M[k] = max(M[k], M[k - PESOS[i]] + APORTE[i]);
+		printf("%d\n", M[capacidad]);	
+}

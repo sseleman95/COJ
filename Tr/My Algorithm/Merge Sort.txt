@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+	static long cont;//cantidad minima de cambios de posiciones adyacentes
+	static long[] a, tmp;
+
+	public static void main(String[] args) throws java.lang.Exception {
+		BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(cin.readLine());
+		a = new long[t];
+		tmp = new long[t];
+		for (int i = 0; i < t; i++)
+			a[i] = Integer.parseInt(cin.readLine());
+		 MergeSort( 0, t - 1 );
+		 System.out.println(cont);
+	}
+
+	static void MergeSort(int lo, int hi) {
+		if (lo == hi)
+			return;
+		int mid = (lo + hi) >> 1;		
+		MergeSort(lo, mid);
+		MergeSort(mid + 1, hi);	
+		int cnt = 0;
+		int llo = lo, lhi = mid, rlo = mid + 1, rhi = hi;
+		while (llo <= lhi && rlo <= rhi)
+			if (a[llo] < a[rlo])
+				tmp[cnt++] = a[llo++];
+			else {
+				cont += rlo - llo - (rlo - (mid + 1));
+				tmp[cnt++] = a[rlo++];
+			}
+		while (llo <= lhi)
+			tmp[cnt++] = a[llo++];
+		while (rlo <= rhi)
+			tmp[cnt++] = a[rlo++];	
+		cnt = 0;
+		for (int i = lo; i <= hi; i++)
+			a[i] = tmp[cnt++];
+	}
+}

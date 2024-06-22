@@ -1,0 +1,14 @@
+//Z[i] es la cantidad de caracteres, lcp de los caracteres empezando en i con el inicio del string
+//O(n)
+int Z[MAX]; // Z[i]=SA[i]%SA[0]
+void zAlgorithm(char *S,int n){
+   int g=0,f=0; Z[0] = n;
+   FAB(i,1,n)
+      if(i<g && Z[i-f]!=(g-i))
+         Z[i]=min(Z[i-f],g-i);
+      else{
+         g = max(g, f = i);
+         while(g<n && S[g]==S[g-f]) g++;
+         Z[i] = g - f;
+      }
+}

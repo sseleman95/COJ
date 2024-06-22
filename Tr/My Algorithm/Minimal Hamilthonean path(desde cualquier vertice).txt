@@ -1,0 +1,22 @@
+//los nodos deben estar enumerados de 0...N - 1
+int ady[MAXN][MAXN];
+int dp[1 << MAXN][MAXN];
+
+int shortes_path(int N) {
+	memset(dp, 63, sizeof dp);
+	for (int mask = 0; mask < 1 << N; ++mask) {
+		for (int i = 0; i < N; ++i) {
+			if (!(mask & (mask - 1)) && (mask & (1 << i)))
+				dp[mask][i] = 0;
+			else if ((mask & (mask - 1)) && (mask & (1 << i)))
+				for (int j = 0; j < N; ++j) {
+					if ((mask & (1 << j)) && ady[j][i])
+						dp[mask][i] = min(dp[mask][i], dp[mask ^ (1 << i)][j] + ady[j][i]);
+				}
+		}
+	}
+	int res = INF;
+	for (int i = 0; i < N; ++i)
+		res = min(res, dp[(1 << N) - 1][i]);
+	return res;
+}

@@ -1,0 +1,4 @@
+//para n > 3
+int n = 20;
+int PI = 2 * acos(0);
+cout << (int)(0.5 * log10(2 * n * PI) + n * log10(n / M_E) + 1);

@@ -1,0 +1,77 @@
+//encontrar los divisores de un numero, preferiblemente si es de 64 bit
+
+typedef long long ll;
+
+ll GCD(ll a, ll b) {
+	ll r;
+	while (b != 0) {
+		a = a % b;
+		r = a;
+		a = b;
+		b = r;
+	}
+	return a;
+}
+
+#define MAXP 10
+const int prime[MAXP] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
+ll N;
+ll mul(ll a, ll b, ll m) {
+	if (!b)
+		return 0;
+	ll ret = 2 * mul(a, b / 2, m) % m;
+	if (b % 2)
+		ret = (ret + a) % m;
+	return ret;
+}
+
+ll power(ll x, ll n, ll m) {
+	ll ret = 1;
+	for (; n; x = mul(x, x, m), n /= 2)
+		if (n % 2)
+			ret = mul(ret, x, m);
+	return ret;
+}
+
+bool is_prime(ll p) {
+	if (p < 2 || (p > 2 && !(p % 2)))
+		return false;
+	for (int i = 0; i < MAXP && prime[i] < p; i++)
+		if (power(prime[i], p - 1, p) != 1)
+			return false;
+	return true;
+}
+
+ll factores[70];
+int nfactor;
+ll pollard_rho(ll c, ll num) {
+	ll x = rand() % num;
+	ll i = 1, k = 2, y = x, comDiv;
+	do {
+		i++;
+		if ((x = mul(x, x, num) - c) < 0)
+			x += num;
+		if (x == y)
+			break;
+		comDiv = GCD((y - x + num) % num, num);
+		if (comDiv > 1 && comDiv < num)
+			return comDiv;
+		if (i == k) {
+			y = x;
+			k <<= 1;
+		}
+	} while (true);
+	return num;
+}
+
+void fFindFactor(ll num) {
+	if (is_prime(num)) {
+		factores[nfactor++] = num;
+		return;
+	}
+	ll factor = num + 1;
+	while (factor >= num)
+		factor = pollard_rho(rand() % (num - 1) + 1, num);
+	fFindFactor(factor);
+	fFindFactor(num / factor);
+}

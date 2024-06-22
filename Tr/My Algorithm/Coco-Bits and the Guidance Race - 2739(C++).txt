@@ -1,0 +1,72 @@
+#include <algorithm>
+#include <numeric>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <queue>
+#include <set>
+#include <map>
+#include <stack>
+#include <cstdio>
+#include <cstdlib>
+#include <cctype>
+#include <cassert>
+#include <cmath>
+#include <complex>
+#include <memory.h>
+#include <time.h>
+#include <list>
+
+using namespace std;
+
+int pnt[1000001][2], ids[10];
+double g[10][10], visited[10];
+
+double solve(int n, int cur, double d, int last, int cnt) {
+	double tmp = 1e18;
+	if (cur == last) {
+		if (cnt == n)
+			return d;
+		return tmp;
+	}
+	visited[cur] = 1;
+	for (int i = 0; i < n; ++i) {
+		if (g[cur][i] && !visited[i]) {
+			double tp = solve(n, i, d + g[cur][i], last, cnt + 1);
+			if (tp < tmp)
+				tmp = tp;
+		}
+	}
+	visited[cur] = 0;
+	return tmp;
+}
+
+int main() {
+	//freopen("f", "r", stdin);
+	int n;
+	scanf("%d", &n);
+	for (int i = 0; i < n; ++i) {
+		int id, x, y;
+		scanf("%d%d%d", &id, &x, &y);
+		pnt[id][0] = x, pnt[id][1] = y;
+		ids[i] = id;
+	}
+	for (int i = 0; i < n; ++i) {
+		for (int j = i + 1; j < n; ++j) {
+			double d = hypot(pnt[ids[i]][0] - pnt[ids[j]][0],
+					pnt[ids[i]][1] - pnt[ids[j]][1]);
+			g[i][j] = g[j][i] = d;
+		}
+	}
+	int st, ed;
+	scanf("%d%d", &st, &ed);
+	for (int i = 0; i < n; ++i) {
+		if (ids[i] == st)
+			st = i;
+		if (ids[i] == ed)
+			ed = i;
+	}
+	double sol = solve(n, st, 0, ed, 1);
+	printf("%.2lf\n", sol);
+}

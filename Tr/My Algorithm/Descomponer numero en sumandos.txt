@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	static StringBuffer[]array = new StringBuffer[1001];
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
+		int test = Integer.parseInt(cin.readLine()), n;
+		for (int i = 0; i < test; i++) {
+			if(i != 0)
+				System.out.println();
+			n = Integer.parseInt(cin.readLine());
+			if(array[n] == null)
+				DescomponEnSumando(n, 1, 0, "", n);
+			System.out.println(array[n].toString().trim());
+		}
+	}
+
+	static void DescomponEnSumando(int n, int pos, int ninc, String s, int numero) {
+		if (ninc == numero) {
+			if(array[numero] == null)
+				array[numero] = new StringBuffer();
+			array[numero].append(numero + " = " + s.substring(0, s.length() - 3) + "\n");
+		}
+		for (int i = pos; i <= n; i++)
+			DescomponEnSumando(n - i, i, ninc + i, s + i + " + ", numero);
+	}
+}

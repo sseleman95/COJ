@@ -1,0 +1,19 @@
+int M[MAXN][LOGMAXN];
+
+void createSPT(int N) {
+	int i, j;
+	for (i = 0; i < N; i++)
+		M[i][0] = i;
+	for (j = 1; 1 << j <= N; j++)
+		for (i = 0; i + (1 << j) - 1 < N; i++)
+			if (notes[M[i][j - 1]] < notes[M[i + (1 << (j - 1))][j - 1]])
+				M[i][j] = M[i][j - 1];
+			else
+				M[i][j] = M[i + (1 << (j - 1))][j - 1];
+}
+
+int get_minor(int i, int j) {
+	int k = log2(j - i + 1);
+	return (notes[M[i][k]] <= notes[M[j - (1 << k) + 1][k]]) ?
+			notes[M[i][k]] : notes[M[j - (1 << k) + 1][k]];
+}

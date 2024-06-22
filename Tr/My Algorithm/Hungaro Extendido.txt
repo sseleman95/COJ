@@ -1,0 +1,69 @@
+int N,M,cx[MAX],cy[MAX],w[MAX][MAX];
+// T[i][j] = cant de x para y
+// w[i][j] = -w[i][j] para Minimizar
+int T[MAX][MAX]; 
+int lx[MAX],ly[MAX];
+int S[MAX],SX[MAX],P[MAX];
+void Inicializar(){
+   FOR(i,N){
+      lx[i]= -oo;
+	  FOR(j,M){
+         if(lx[i]<w[i][j])
+            lx[i]= w[i][j];
+         T[i][j]= 0;
+	  }
+   }
+   FOR(i,M) ly[i]= 0;
+}
+int HungarianExt(){ // 1
+   Inicializar();
+   int delta,f,j;
+   bool found,vx[MAX],vy[MAX];
+   FOR(u,N) while(cx[u]){ // 2
+      FOR(i,N) vx[i]=0, P[i] = -1;
+      FOR(i,M){ // 3
+         vy[i]=0 , SX[i]=u;
+         S[i] = lx[u]+ ly[i] -w[u][i];
+      } // 3
+      while(vx[u] = 1){ // 4
+         delta = oo,found = 0;
+         FOR(i,M) if(!vy[i]){ // 5
+            delta = min(S[i],delta);
+            if(S[i] == 0){ // 6
+               vy[i] = 1;
+               if(cy[i]){ // 7
+                  f = min(cx[u],cy[i]);
+                  for(j=SX[i];P[j]!=-1;j =SX[P[j]])
+                     f= min(f, T[j][P[j]]);
+                  cx[u] -=f, cy[i] -=f;
+                  j= i; while(j!=-1){ // 8
+                     T[SX[j]][j] += f;
+                     if(P[SX[j]] != -1)
+                        T[SX[j]][P[SX[j]]] -=f;
+                     j= P[SX[j]];
+                  } // 8
+                  found = 1;
+               }else  // 7
+                 FOR(j,N)
+                   if(!vx[j] && T[j][i]){ // 9
+                     P[j]=i,vx[j]= 1;
+                     FOR(k,M) if (!vy[k])
+                      if(S[k]>lx[j]+ly[k]-w[j][k]){
+                         S[k]= lx[j]+ly[k]-w[j][k];
+                         SX[k]= j;
+                       }
+                    } // 9               
+         break;}  } // 6 5
+         if(found) break;
+         if(delta){
+            FOR(i,N) if(vx[i]) lx[i] -=delta;
+            FOR(i,M) if(vy[i]) ly[i] +=delta;
+            else   
+               S[i] -=delta;
+         }
+   }  } // 4 2
+   delta = 0;
+   FOR(i,N) FOR(j,M) 
+      delta -= T[i][j]*w[i][j];
+   return delta;
+}

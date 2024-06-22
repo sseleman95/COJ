@@ -1,0 +1,81 @@
+#include <algorithm>
+#include <numeric>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <queue>
+#include <set>
+#include <map>
+#include <stack>
+#include <cstdio>
+#include <cstdlib>
+#include <cctype>
+#include <cassert>
+#include <cmath>
+#include <complex>
+#include <memory.h>
+#include <time.h>
+#include <list>
+
+using namespace std;
+#define MAXI 500
+#define MAXF 1200
+int conn[MAXI][MAXI];
+int deg[MAXI];
+int nconn;
+int path[MAXF];
+int plen;
+
+void find_path(int loc) {
+	int lv;
+	for (lv = 0; lv < nconn; lv++)
+		if (conn[loc][lv]) {
+			conn[loc][lv]--;
+			conn[lv][loc]--;
+			deg[lv]--;
+			deg[loc]--;
+			find_path(lv);
+		}
+	path[plen++] = loc;
+}
+
+int main() {
+	//freopen("f", "r", stdin);
+	int nfen;
+	int lv;
+	int x, y;
+	while (scanf("%d", &nfen) != EOF) {
+		memset(conn, 0, sizeof conn);
+		memset(deg, 0, sizeof deg);
+		memset(path, 0, sizeof path);
+                plen = 0;
+		for (lv = 0; lv < nfen; lv++) {
+			scanf("%d %d", &x, &y);
+			x--;
+			y--;
+			conn[x][y]++;
+			conn[y][x]++;
+			deg[x]++;
+			deg[y]++;
+			if (x >= nconn)
+				nconn = x + 1;
+			if (y >= nconn)
+				nconn = y + 1;
+		}
+
+		for (lv = 0; lv < nconn; lv++)
+			if (deg[lv] % 2 == 1)
+				break;
+
+		if (lv >= nconn)
+			for (lv = 0; lv < nconn; lv++)
+				if (deg[lv])
+					break;
+
+		find_path(lv);
+
+		for (lv = plen - 1; lv >= 0; lv--)
+			printf("%i\n", path[lv] + 1);
+	}
+}

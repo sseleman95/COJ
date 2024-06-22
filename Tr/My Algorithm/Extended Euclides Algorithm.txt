@@ -1,0 +1,13 @@
+//para division modular se llama de la sgte forma:
+//a = MOD, b = den, x = 1, y = 0
+//la respuesta es ((((y + MOD) % MOD) * num)) % MOD
+ll extendedGCD(ll a, ll b, ll& x, ll& y) {
+	ll g = a;
+	x = 1;
+	y = 0;
+	if (b != 0) {
+		g = extendedGCD(b, a % b, y, x);
+		y -= (a / b) * x;
+	}
+	return g;
+}

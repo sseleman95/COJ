@@ -1,0 +1,4 @@
+//a, b, c son los lados del triangulo
+
+double s = (a + b + c) / 2;
+double r = sqrt((s - a) * (s - b) * (s - c) / s);

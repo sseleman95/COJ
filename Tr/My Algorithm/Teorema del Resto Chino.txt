@@ -1,0 +1,12 @@
+// x = a[i] mod m[i]
+// if GCD(m[i],m[j]) != 1 -> noSolucion
+int RestoChino(int n,ll *a,ll *m,ll *x){
+   ll K = 1, inverso;  *x = 0;
+   FOR(i,n) K *= m[i];
+   FOR(i,n){
+      invMod(K/m[i],m[i],inverso);
+      *x += a[i]* K/m[i]* inverso;
+   }		
+   *x %= K;
+   return 1; // Tiene sol
+}

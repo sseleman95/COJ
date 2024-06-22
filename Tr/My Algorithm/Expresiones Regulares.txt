@@ -1,0 +1,36 @@
+import java.util.regex.*;
+Pattern pattern = Pattern.compile(expresion);
+Matcher matcher = pattern.matcher(patron);
+if (matcher.matches())
+
+[abc] -> a, b, or c (simple class)
+[^abc] -> Any character except a, b, or c (negation)
+[a-zA-Z]  -> a hasta z or A hasta Z, inclusive (range)
+[a-d[m-p]] -> a hasta d, or m hasta p: [a-dm-p] (union)
+[a-z&&[def]] ->  d, e, or f (intersection)
+[a-z&&[^bc]] ->  a through z, except for b and c: [ad-z] (subtraction)
+[a-z&&[^m-p]] -> a through z, and not m through p: [a-lq-z](subtraction)
+
+.  -> Any character
+\d -> A digit: [0-9]
+\D -> A non-digit: [^0-9]
+\s -> A whitespace character: [ \t\n\x0B\f\r]
+\S -> A non-whitespace character: [^\s]
+\w -> A word character: [a-zA-Z_0-9]
+\W -> A non-word character: [^\w]
+
+\p{Punct} -> One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+\p{Lower} -> A lower-case alphabetic character: [a-z]
+\p{Upper} -> An upper-case alphabetic character:[A-Z]
+\p{Alpha} -> An alphabetic character
+\p{Digit} -> A decimal digit: [0-9]
+\p{Alnum}  -> An alphanumeric character:[\p{Alpha}\p{Digit}]
+\p{XDigit}  -> A hexadecimal digit: [0-9a-fA-F]
+\p{Space}  -> A whitespace character: [ \t\n\x0B\f\r]
+X?    -> X, once or not at all
+X*    -> X, zero or more times
+X+    -> X, one or more times
+X{n}  -> X, exactly n times
+X{n,} -> X, at least n times
+X{n,m}-> X, at least n but not more than m times
+X|Y   ->  Either X or Y

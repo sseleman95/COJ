@@ -1,0 +1,36 @@
+//un substring es un cuadrado si se cumple por ejemplo: "abab" es cuadrado por tener "ab" consecutivo
+//no importa en que lugar de la cadena aparezca, pero si tiene que ser consecutivo
+bool rtest(char *u, int m, char *v, int n) {
+	for (int i = n, j, q = n; i >= 0; i = max(j, i / 2) - 1) {
+		for (j = i; j >= 0 && m - 1 - i + j >= 0 && u[m - 1 - i + j] == v[j];
+				--j)
+			;
+		if (j < 0)
+			return true;
+		if (i + j <= q) {
+			for (q = i + j + 1; q > i && v[q] == v[q - i - 1]; --q)
+				;
+			if (q <= i)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool rec(char *s, char *r, int n) {
+	int m = n / 2;
+	if (n <= 1)
+		return false;
+	if (rec(s, r + n - m, m) || rec(s + m, r, n - m))
+		return true;
+	if (rtest(s, m, s + m, n - m) || rtest(r, n - m, r + n - m, m))
+		return true;
+	return false;
+}
+
+bool square(char *s, int n) {
+	char r[n];
+	copy(s, s + n, r);
+	reverse(r, r + n);
+	return rec(s, r, n);
+}

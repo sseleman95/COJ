@@ -1,0 +1,64 @@
+#include <algorithm>
+#include <numeric>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <queue>
+#include <set>
+#include <map>
+#include <stack>
+#include <cstdio>
+#include <cstdlib>
+#include <cctype>
+#include <cassert>
+#include <cmath>
+#include <complex>
+#include <memory.h>
+#include <time.h>
+#include <list>
+
+using namespace std;
+typedef complex<double> point;
+
+void line_line_intrs(double A1, double B1, double C1, double A2, double B2,
+		double C2, double &x, double &y) {
+	double det = A1 * B2 - A2 * B1;
+	x = (B2 * C1 - B1 * C2) / det;
+	y = (A1 * C2 - A2 * C1) / det;
+}
+
+inline double dist(double x, double y, double x1, double Y1) {
+	return hypot(x - x1, y - Y1);
+}
+
+double V[3][3], R[3][3];
+
+int main() {
+	//freopen("f", "r", stdin);
+	for (int i = 0; i < 3; ++i)
+		scanf("%lf%lf%lf", &V[i][0], &V[i][1], &V[i][2]);
+	for (int i = 0; i < 3; ++i)
+		scanf("%lf%lf%lf", &R[i][0], &R[i][1], &R[i][2]);
+	double x1, Y1;
+	line_line_intrs(V[0][0], V[0][1], V[0][2], R[0][0], R[0][1], R[0][2], x1,
+			Y1);
+	double x2, y2;
+	line_line_intrs(V[2][0], V[2][1], V[2][2], R[0][0], R[0][1], R[0][2], x2,
+			y2);
+	double x3, y3;
+	line_line_intrs(V[0][0], V[0][1], V[0][2], R[1][0], R[1][1], R[1][2], x3,
+			y3);
+	double x4, y4;
+	line_line_intrs(V[2][0], V[2][1], V[2][2], R[1][0], R[1][1], R[1][2], x4,
+			y4);
+	double x5, y5;
+	line_line_intrs(V[1][0], V[1][1], V[1][2], R[2][0], R[2][1], R[2][2], x5,
+			y5);
+	double sol = dist(x1, Y1, x2, y2);
+	sol += dist(x1, Y1, x3, y3);
+	sol += dist(x2, y2, x4, y4);
+	sol += dist(x3, y3, x5, y5);
+	sol += dist(x4, y4, x5, y5);
+	printf("%.2lf\n", sol);
+}

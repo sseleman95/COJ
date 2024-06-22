@@ -1,0 +1,8 @@
+//center[i] es el centro de la circunferencia, deben estar en la misma recta
+//r es el radio de la circunferencia, beben ser iguales
+
+double d = centers[i] - centers[i - 1];
+double ang = Math.acos(d / (2 * r));
+double s = ang * r * r;
+double t = (d / 2) * Math.pow(r * r - (d * d / 4), 0.5);
+double areaInters = 2 * (s - t);

@@ -1,0 +1,35 @@
+const ll oo = 1e18;
+ll M[16][16]; int n;
+// Para minimizar - M[i][j] < 0
+ll Hungarian(){
+   int p,q;
+   ll xx,yy;
+   vector<ll> fx(n,oo),fy(n,0);
+   vector<int> x(n,-1),y(n,-1);
+   for(int i=0;i<n;){
+      vector<int> t(n,-1),s(n+1,i);
+      for(p=q=0;p<=q && x[i]<0;++p)
+         for(int k=s[p],j=0;j<n && x[i]<0;++j)
+            if(fx[k]+fy[j]== M[k][j] && t[j]<0){
+               s[++q]=y[j],t[j]=k;
+               if(s[q]<0)
+                  for(p=j;p>=0;j=p)
+                     y[j] = k = t[j],
+                     p = x[k],x[k]=j;
+            }
+      if(x[i]<0){
+         yy = oo;
+         FOR(k,q+1) FOR(j,n)
+            if(t[j]<0)
+              yy=min(yy,(fx[s[k]]+fy[j]-
+                         M[s[k]][j]));
+         FOR(j,n)
+            fy[j] += (t[j]<0 ? 0:yy);
+         FOR(k,q+1) fx[s[k]] -=yy;
+      } else i++;
+   }
+   xx = 0;
+   FOR(i,n)
+      xx += M[i][x[i]];
+   return -xx;
+}

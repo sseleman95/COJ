@@ -1,0 +1,21 @@
+//calcular la raiz cuadrada de un numero
+double NewtonRaphson(double n){
+   double x = 1, nx;
+   while (true) {
+      nx = (x + n / x) / 2;
+      if (fabs(x-nx) < EPS) break;
+      x = nx;
+   }
+   return x;
+}
+
+int NewtonRaphson(int n){
+   int a = 1; bool low = 0;
+   while(1) {
+      int nx=(a+n/a)/2;
+      if (a==nx || (nx>a &&low))
+         break;
+      low =nx<a, a=nx;
+   }
+   return a;
+}

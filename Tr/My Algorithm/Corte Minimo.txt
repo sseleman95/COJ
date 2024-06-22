@@ -1,0 +1,39 @@
+//algoritmo para separar 2 vertices calquiera de un grafo con el menor costo
+//el costo de separar 2 vertices es la suma del peso de las aristas que hay
+//que eliminar para lograr que no se pueda llegar de un vertice a otro
+int n;
+int best_cost = 1000000000;
+vector<int> best_cut;
+int G[maxn][maxn];
+
+void mincut() {
+	vector<int> V[maxn];
+	for (int I = 0; I < n; ++I)
+	V[I].assign(1, I);
+	int w[maxn];
+	bool exist[maxn], IN_A[maxn];
+	memset(exist, true, sizeof exist);
+	for (int pH = 0; pH < n - 1; ++pH) {
+		memset(IN_A, false, sizeof IN_A);
+		memset(w, 0, sizeof w);
+		for (int IT = 0, Prev; IT < n - pH; ++IT) {
+			int SEL = -1;
+			for (int I = 0; I < n; ++I)
+			if (exist[I] && !IN_A[I] && (SEL == -1 || w [I] > w [SEL]))
+			SEL = I;
+			if (IT == n - pH - 1) {
+				if (w[SEL] < best_cost)
+				best_cost = w[SEL], best_cut = V[SEL];
+				V[Prev].insert(V[Prev].end(), V[SEL].begin(), V[SEL].end());
+				for ( int I = 0; I < n; ++ I )
+				G[Prev][I] = G[I][Prev] += G[SEL][I];
+				exist[SEL] = false;
+			} else {
+				IN_A[SEL] = true;
+				for ( int I = 0; I < n; ++ I )
+				w [I] += G[SEL][I];
+				Prev = SEL;
+			}
+		}
+	}
+}

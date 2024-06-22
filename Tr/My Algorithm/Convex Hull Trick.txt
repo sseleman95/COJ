@@ -1,0 +1,45 @@
+//Se tienen una serie de rectas de la forma y=mx+n
+//se quiere determinar para una x dada el valor de la menor y
+//donde intersecta la recta que pasa por x y todas las rectas
+//que se tienen.
+//ordenar las rectas por pendientes descendentemente.
+//añadir una nueva linea:
+//si l1, l2, l3 son la 2da recta procesada, la 1ra recta
+//prosesada y la nueva recta a añadir, entonces, l2 se vuelve
+//irrelevante(debe ser removida), si y solo si el pto de interseccion
+//de l1 y l3 esta a la izquierda del pto de interseccion de l1 y l2
+//si tenemos 2 rectas(l1, l2) dadas por la ecuacion y1=m1x1+n1, y2=m2x2+n2
+//la interseccion en x de esas rectas es calculada como: (n2-n1)/(m1-m2)
+//para responder los queries, ordenamos las x e iteramos por todas las lineas
+//evaluando la x en la ith linea y la ith + 1, si la ith + 1 tiene un valor de y menor seguimos avanzando.
+
+struct line {
+	double m, n;
+
+	double evaluate(double x) {
+		return m * x + n;
+	}
+};
+
+vector<line> pr;
+
+void add_line(line l) {
+	pr.push_back(l);
+	while (pr.size() >= 3) {
+		line l3 = pr[pr.size() - 1];
+		line l2 = pr[pr.size() - 2];
+		line l1 = pr[pr.size() - 3];
+		double x1 = (l3.n - l1.n) / (l1.m - l3.m);
+		double x2 = (l2.n - l1.n) / (l1.m - l2.m);
+		if (x1 < x2)
+			pr.erase(pr.end() - 2);
+		else
+			break;
+	}
+}
+
+int pointer = 0;
+void query(double x) {
+	while (pointer < (int)pr.size() - 1 && pr[pointer].evaluate(x) > pr[pointer + 1].evaluate(x))
+		pointer++;
+}

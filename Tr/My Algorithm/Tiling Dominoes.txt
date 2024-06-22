@@ -1,0 +1,11 @@
+double res = 1;
+	int n = 3, k = 3;
+	const double PI = 2 * acos(0);
+	typedef long long ll;
+	for (double i = 1; i <= n; i++)
+		for (double j = 1; j <= k; j++) {
+			double x = 4 * cos(PI * i / (n + 1)) * cos(PI * i / (n + 1));
+			x += 4 * cos(PI * j / (k + 1)) * cos(PI * j / (k + 1));
+			res *= pow(x, 0.25);
+		}
+	cout << (ll) (res + 0.000001);

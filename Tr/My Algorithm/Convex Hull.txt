@@ -1,0 +1,27 @@
+struct point {
+	int x, y;
+};
+
+point resta(point p1, point p2) {
+	return (point) {p1.x - p2.x, p1.y - p2.y};
+}
+
+double crossProd(point p1, point p2) {
+	return p1.x * p2.y - p1.y * p2.x;
+}
+
+int N;
+point vertex[5000];
+void convexHull(point ps[]) {
+	int n = N, k = 0;
+	for (int i = 0; i < n; vertex[k++] = ps[i++])
+		while (k >= 2
+				&& crossProd(resta(vertex[k - 1], vertex[k - 2]),
+						resta(ps[i], vertex[k - 2])) <= 0)
+			--k;
+	for (int i = n - 2, t = k + 1; i >= 0; vertex[k++] = ps[i--])
+		while (k >= t
+				&& crossProd(resta(vertex[k - 1], vertex[k - 2]),
+						resta(ps[i], vertex[k - 2])) <= 0)
+			--k;
+}

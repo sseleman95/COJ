@@ -1,0 +1,93 @@
+const double EPS = 1e-8;
+const double oo = 1e12;
+const double PI = 3.141592653589793;
+#define X real()
+#define Y imag()
+typedef complex<double> P;
+typedef vector<P> Pol;
+//cross product en 3D
+//i = y1*z2 - y2*z1;
+//j = x2*z1 - x1*z2;
+//k = x1*y2 - x2*y1;
+
+struct circle {
+	P p;
+	double r;
+	circle() {
+	}
+	circle(P x, double rr) {
+		p = x, r = rr;
+	}
+};
+
+struct L: public vector<P> { //Linea
+	L(P a, P b) {
+		push_back(a);
+		push_back(b);
+	}
+};
+
+inline bool operator<(const P a, const P b) {
+	return a.X != b.X ? a.X < b.X : a.Y < b.Y;
+}
+
+double cross(P a, P b) { //1
+	return imag(conj(a) * b);
+}
+
+double dot(P a, P b) { //2
+	return (conj(a) * b).X;
+}
+
+
+double distSqr(P &p1, P &p2){
+   return (p1.X-p2.X)*(p1.X-p2.X) + 
+          (p1.Y-p2.Y)*(p1.Y-p2.Y);
+}
+bool contain(circle c,P p){
+   return distSqr(c.p,p)<= c.r*c.r;
+}
+circle findCircle(P a,P b){
+   P p( real(a+b)/2.0 , imag(a+b)/2.0);
+   return circle( p, sqrt(distSqr(a,p)));
+}
+circle findCircle(P pa,P pb,P pc) {
+   double a,b,c,x,y,r,d;
+   c = sqrt(distSqr(pa , pb));
+   b = sqrt(distSqr(pa , pc));
+   a = sqrt(distSqr(pb , pc));
+   if (b==0 || c==0 || a*a>= b*b+c*c)
+      return findCircle(pb,pc);
+   if (b*b >= a*a+c*c)
+      return findCircle(pa,pc);
+   if (c*c >= a*a+b*b)
+      return findCircle(pa,pb);
+   d = real(pb-pa)*imag(pc-pa);
+   d = 2 * (d - imag(pb-pa)*real(pc-pa));
+   x = (imag(pc-pa)*c*c-imag(pb-pa)*b*b)/d;
+   y = (real(pb-pa)*b*b-real(pc-pa)*c*c)/d;
+   x += real(pa), y += imag(pa);
+   r= sqrt(pow(real(pa)-x,2)+ pow(imag(pa)-y,2));
+   return circle(P(x,y),r);
+}
+
+P points[MAXN], R[3];
+circle sed(int n,int nr){
+   circle c;
+   if(nr == 3)
+      c = findCircle(R[0],R[1],R[2]);
+   else if (n == 0 && nr==2)
+      c = findCircle(R[0], R[1]);
+   else if(n==1 && nr == 0)
+      c = circle(points[0],0);
+   else if(n == 1 && nr == 1)
+      c = findCircle(R[0],points[0]);
+   else{
+      c = sed(n-1, nr);
+      if(!contain(c,points[n-1])){
+         R[nr++] = (points[n-1]);
+         c = sed(n-1, nr);
+      }
+   }
+   return c;
+}

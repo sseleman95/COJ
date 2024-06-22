@@ -1,0 +1,266 @@
+#define MAXN 10000
+#include <cstdlib>
+#include <map>
+#include <cmath>
+#include <vector>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+using namespace std;
+class FHeapNode {
+public:
+   FHeapNode *parent;
+   FHeapNode *left, *right;
+   FHeapNode *child;
+   int rank;
+   int marked;
+   int key;
+   int item;
+};
+
+class FHeap {
+public:
+   FHeap(int n) {
+      int i;
+      maxTrees = 1 + (int)(1.44 * log(n)/log(2.0));
+      maxNodes = n;
+
+      trees = new FHeapNode*[maxTrees];
+      for (i = 0; i < maxTrees; i++)
+         trees[i] =0;
+
+      nodes = new FHeapNode*[n];
+      for (i = 0; i < n; i++)
+         nodes[i] = 0;
+
+      itemCount = 0;
+      treeSum = 0;
+      compCount = 0;
+   }
+   ~FHeap() {
+      int i;
+      for (i = 0; i < maxNodes; i++)
+         delete nodes[i];
+      delete [] nodes;
+      delete [] trees;
+   }
+
+   int deleteMin() {
+      FHeapNode *minNode, *child, *next;
+      int k, k2;
+      int r, v, item;
+      v = treeSum;
+      r = -1;
+      while (v) {
+         v >>= 1;
+         r++;
+      };
+      minNode = trees[r];
+      k = minNode->key;
+      while (r > 0) {
+         r--;
+         next = trees[r];
+         if (next) {
+            if ((k2 = next->key) < k) {
+               k = k2;
+               minNode = next;
+            }
+            compCount++;
+         }
+      }
+      r = minNode->rank;
+      trees[r] = NULL;
+      treeSum -= (1 << r);
+      child = minNode->child;
+      if (child)
+         meld(child);
+      item = minNode->item;
+      nodes[item] = NULL;
+      delete minNode;
+      itemCount--;
+      return item;
+   }
+   void insert(int item, int k) {
+      FHeapNode *newNode;
+      newNode = new FHeapNode;
+      newNode->child = NULL;
+      newNode->left = newNode->right = newNode;
+      newNode->rank = 0;
+      newNode->item = item;
+      newNode->key = k;
+      nodes[item] = newNode;
+      meld(newNode);
+      itemCount++;
+   }
+   void decreaseKey(int item, int newValue) {
+      FHeapNode *cutNode, *parent, *newRoots, *r, *l;
+      int prevRank;
+      cutNode = nodes[item];
+      parent = cutNode->parent;
+      cutNode->key = newValue;
+      if (!parent) {
+         return;
+      }
+      l = cutNode->left;
+      r = cutNode->right;
+      l->right = r;
+      r->left = l;
+      cutNode->left = cutNode->right = cutNode;
+      newRoots = cutNode;
+      while (parent && parent->marked) {
+         parent->rank--;
+         if (parent->rank) {
+            if (parent->child == cutNode)
+               parent->child = r;
+         } else {
+            parent->child = NULL;
+         }
+         cutNode = parent;
+         parent = cutNode->parent;
+         l = cutNode->left;
+         r = cutNode->right;
+         l->right = r;
+         r->left = l;
+         l = newRoots->left;
+         newRoots->left = l->right = cutNode;
+         cutNode->left = l;
+         cutNode->right = newRoots;
+         newRoots = cutNode;
+      }
+      if (!parent) {
+         prevRank = cutNode->rank + 1;
+         trees[prevRank] = NULL;
+         treeSum -= (1 << prevRank);
+      } else {
+         parent->rank--;
+         if (parent->rank) {
+            if (parent->child == cutNode)
+               parent->child = r;
+         } else {
+            parent->child = NULL;
+         }
+         parent->marked = 1;
+      }
+      meld(newRoots);
+   }
+   int nItems() const {
+      return itemCount;
+   }
+
+   long nComps() const {
+      return compCount;
+   }
+   void dump() const;
+
+private:
+   FHeapNode **trees;
+   FHeapNode **nodes;
+   int maxNodes, maxTrees, itemCount, treeSum;
+   long compCount;
+
+   void meld(FHeapNode *treeList) {
+      FHeapNode *first, *next, *nodePtr, *newRoot, *temp, *temp2, *lc, *rc;
+      int r;
+      nodePtr = first = treeList;
+      do {
+         next = nodePtr->right;
+         nodePtr->right = nodePtr->left = nodePtr;
+         nodePtr->parent = NULL;
+         newRoot = nodePtr;
+         r = nodePtr->rank;
+         do {
+            if ((temp = trees[r])) {
+               trees[r] = NULL;
+               treeSum -= (1 << r);
+               if (temp->key < newRoot->key) {
+                  temp2 = newRoot;
+                  newRoot = temp;
+                  temp = temp2;
+               }
+               compCount++;
+               if (r++ > 0) {
+                  rc = newRoot->child;
+                  lc = rc->left;
+                  temp->left = lc;
+                  temp->right = rc;
+                  lc->right = rc->left = temp;
+               }
+               newRoot->child = temp;
+               newRoot->rank = r;
+               temp->parent = newRoot;
+               temp->marked = 0;
+            } else {
+               trees[r] = newRoot;
+               treeSum += (1 << r);
+               newRoot->marked = 1;
+            }
+         } while (temp);
+         nodePtr = next;
+      } while (nodePtr != first);
+   }
+};
+vector<pair<int,int> > ady[MAXN];
+pair<int,int> points[MAXN];
+bool s[MAXN];
+bool f[MAXN];
+int distances[MAXN];
+FHeap *hd;
+int main() {
+   register int cas, N, W, i, u, v, r, j, dist;
+   scanf("%d", &cas);
+   while (cas--) {
+      scanf("%d", &N);
+      map<string, int> hashed;
+      for (i = 0; i < N; i++) {
+         string name;
+         cin >> name;
+         hashed[name] = i;
+         ady[i].clear();
+         scanf("%d", &W);
+         for (int j = 0; j < W; j++) {
+            scanf("%d%d", &u, &v);
+            u--;
+            ady[i].push_back(make_pair(u, v));
+         }
+      }
+      scanf("%d", &r);
+      while (r--) {
+         hd = new FHeap(N);
+         string name1, name2;
+         cin >> name1 >> name2;
+         u = hashed[name1];
+         v = hashed[name2];
+         memset(s, false, N);
+         memset(f, false, N);
+         for (int i = 0; i < N; i++)
+            distances[i] = 200000;
+         distances[u] = 0;
+         hd->insert(u, 0);
+         f[u] = true;
+         while (hd->nItems() > 0 && !s[v]) {
+            u = hd->deleteMin();
+            s[u] = true;
+            f[u] = false;
+            vector<pair<int,int> >::iterator it = ady[u].begin();
+            while (it != ady[u].end()) {
+               j = (*it).first;
+               if (!s[j]) {
+                  dist = distances[u] + (*it).second;
+                  if (distances[j] > dist) {
+                     distances[j] = dist;
+                     if (f[j])
+                        hd->decreaseKey(j, dist);
+                     else {
+                        hd->insert(j, dist);
+                        f[j] = true;
+                     }
+                  }
+               }
+               it++;
+            }
+         }
+         printf("%d\n", distances[v]);
+      }
+   }
+   return 0;
+}
