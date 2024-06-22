@@ -1,8 +1,0 @@
-inline double to_radian(double ang) {
-	return PI * ang / 180;
-}
-
-inline void rotate(double xx, double yy, double& nx, double& ny, double ang) {
-	nx = xx * cos(to_radian(ang)) - yy * sin(to_radian(ang));
-	ny = xx * sin(to_radian(ang)) + yy * cos(to_radian(ang));
-}

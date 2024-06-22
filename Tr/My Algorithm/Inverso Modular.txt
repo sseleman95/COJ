@@ -1,7 +1,0 @@
-ll invMod(ll a, ll m, ll &inv) {
-   ll x, y;
-   if (GCDext(a, m, x, y) != 1) 
-	   return 0 ; // noSolucion
-   inv = (x + m) % m;
-   return 1;
-}

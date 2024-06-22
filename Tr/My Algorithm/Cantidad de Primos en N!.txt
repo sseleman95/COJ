@@ -1,8 +1,0 @@
-//p es el numero primo, to es el limite
-//aux inicialmente = p, inicialmente s = 0
-
-#define get_cnt_primes(p, to)\
-	while(aux <= to) {\
-		s += to / aux;\
-		aux *= p;\
-	}

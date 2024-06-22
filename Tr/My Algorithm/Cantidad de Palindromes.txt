@@ -1,3 +1,0 @@
-//cant de palindromes con n o menos digitos
-a(n) = 2 *(10^(n/2) -1) si n es par
-a(n) = 11*(10^((n-1)/2))-2 si n es impar
