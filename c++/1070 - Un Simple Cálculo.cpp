@@ -1,9 +1,9 @@
-#include<iostream>
+#include <iostream>
 #include <cstdio>
-#include<cmath>
-#include<vector>
-#include<algorithm>
-#include<cstring>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <cstring>
 
 using namespace std;
 
@@ -18,9 +18,9 @@ int main()
 
     int N;
 
-    while(cin>>N)
+    while (cin >> N)
     {
-       cout<<(N*(N+1)*(2*N+1))/6<<" "<<(N*N*(N+1)*(N+1))/4<<endl;
+        cout << (N * (N + 1) * (2 * N + 1)) / 6 << " " << (N * N * (N + 1) * (N + 1)) / 4 << endl;
     }
     return 0;
 }

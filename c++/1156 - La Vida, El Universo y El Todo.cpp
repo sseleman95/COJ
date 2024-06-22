@@ -1,22 +1,19 @@
 #include <stdio.h>
-int main(){
-
-
-int i,n;
-for (;;)
+int main()
 {
 
-scanf("%d",&i);
+    int i, n;
+    for (;;)
+    {
 
+        scanf("%d", &i);
 
-    if (i==42){
+        if (i == 42)
+        {
             break;
-
+        }
+        printf("%d\n", i);
     }
-    printf("%d\n",i);
-}
 
-
-
-return 0;
+    return 0;
 }
