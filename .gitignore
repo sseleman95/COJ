@@ -71,6 +71,7 @@ _modules/*
 
 # Jetbrains editors (PHPStorm, etc)
 .idea/
+!COJ-Mobile-Old/.idea/
 *.iml
 
 # Netbeans
