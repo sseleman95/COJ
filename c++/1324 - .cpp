@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #define FOR(i, n, v) for (__typeof(n) i = v; i < n; i++)
 
 using namespace std;

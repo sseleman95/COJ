@@ -3,9 +3,10 @@
 #include <string.h>
 #include <stdio.h>
 
-using namespace std;
 #define NO cout << "NO" << endl;
 #define YES cout << "YES" << endl;
+
+using namespace std;
 
 int main()
 {

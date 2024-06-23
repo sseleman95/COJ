@@ -1,7 +1,10 @@
 #include <cstdlib>
 #include <iostream>
+
 using namespace std;
+
 long int longitud(int num);
+
 int main()
 {
   long int i, j;

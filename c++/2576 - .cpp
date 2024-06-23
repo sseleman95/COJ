@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #define LIM 123
+
 using namespace std;
 
 int main()

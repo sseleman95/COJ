@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+
 #define min(a, b) (a < b ? a : b)
 
 using namespace std;

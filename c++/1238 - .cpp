@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string.h>
+
 #define MAX 10
 
 using namespace std;

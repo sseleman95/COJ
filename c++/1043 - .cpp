@@ -1,10 +1,13 @@
 #include <cstdlib>
 #include <iostream>
+
 #define MAX 15
 #define rfor(n, i) for (__typeof(n) i = n - 1; i >= 0; i--)
+
 using namespace std;
 
 short int v[MAX] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
+
 int main()
 {
   int T, peso;

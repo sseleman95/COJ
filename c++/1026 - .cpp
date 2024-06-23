@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <string.h>
 #include <stdio.h>
+
 #define MAX 101
 #define FOR(i, n) for (__typeof(n) i = 0; i < n; i++)
 

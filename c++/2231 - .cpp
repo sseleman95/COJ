@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
+
 #define LIM 20
 #define EMPATE     \
     if (x == y)    \
@@ -19,6 +20,7 @@
     {                                                                        \
         winB += 1;                                                           \
     }
+
 using namespace std;
 
 int main()

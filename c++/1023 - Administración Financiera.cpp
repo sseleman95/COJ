@@ -1,8 +1,11 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdio.h>
+
 using namespace std;
+
 double n1, sum;
+
 int main()
 {
     for (int i = 0; i < 12; i++)

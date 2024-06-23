@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #include <math.h>
+
 #define PI 3.141592653589793
+
 using namespace std;
 
 /* Este es un problemita de geometr�a, donde nos piden hallar el perimetro

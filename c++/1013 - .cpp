@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <math.h>
+
 #define MAX 50
 
 using namespace std;

@@ -1,8 +1,11 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdio.h>
+
 #define LIM 277
+
 using namespace std;
+
 float hangover[LIM];
 
 void guardarValores()

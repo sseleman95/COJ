@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
+
 #define T 1440
+
 using namespace std;
 
 int main()

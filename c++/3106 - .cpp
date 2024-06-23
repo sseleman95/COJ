@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string.h>
+
 #define LIM 50
 
 using namespace std;

@@ -1,7 +1,10 @@
 #include <cstdlib>
 #include <iostream>
+
 using namespace std;
+
 int N, M, val, odd, even;
+
 int main()
 {
    while (cin >> N)

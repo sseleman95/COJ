@@ -1,8 +1,11 @@
 #include <cstdlib>
 #include <string.h>
 #include <iostream>
+
 #define LIM 1001
+
 using namespace std;
+
 char num[LIM];
 
 bool div2(int n)

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+
 #define MAX 100000
 
 using namespace std;

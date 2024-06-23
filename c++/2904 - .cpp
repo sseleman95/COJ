@@ -18,7 +18,6 @@ int main()
 		if (x > may)
 			may = x;
 	}
-	// fixing numbers with same length
 	for (int i = 0; i < n; i++)
 	{
 		int len = strlen(nums[i]);
@@ -33,12 +32,6 @@ int main()
 			strcpy(nums[i], s.c_str());
 		}
 	}
-	/*
-	for(int i=0; i<n; i++){
-		printf("%s\n", nums[i]);
-	}
-	*/
-	// suming big numbers
 	int carry = 0, sum;
 	string sumTotal = "";
 	for (int j = may - 1; j >= 0; j--)
@@ -66,19 +59,5 @@ int main()
 
 	reverse(sumTotal.begin(), sumTotal.end());
 	printf("%s\n", sumTotal.c_str());
-	/* Method with no leading zeros
-	bool zero = false;
-	for(int i = 0; i < sumTotal.size(); i++){
-		if(sumTotal[i]>='0' && sumTotal[i]<='9' && zero) {
-			printf("%c", sumTotal[i]);
-		}else{
-			if(sumTotal[i] != '0' && !zero){
-				printf("%c", sumTotal[i]);
-				zero = true;
-			}
-		}
-	}
-	printf("\n");
-	*/
 	return 0;
 }

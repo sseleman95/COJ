@@ -2,7 +2,9 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+
 #define PI 3.14
+
 using namespace std;
 
 string s;

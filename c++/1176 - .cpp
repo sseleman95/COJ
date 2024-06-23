@@ -1,7 +1,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+
 #define MAX 1000
+
 using namespace std;
 
 typedef long long ll;

@@ -4,7 +4,9 @@
 #include <string.h>
 #include <cstring>
 #include <string>
+
 #define LIM 1002
+
 using namespace std;
 
 int main()

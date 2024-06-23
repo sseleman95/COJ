@@ -2,6 +2,7 @@
 #include <string.h>
 
 #define FOR(i, n) for (__typeof(n) i = 0; i < n; i++)
+
 using namespace std;
 
 int main()

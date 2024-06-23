@@ -1,25 +1,18 @@
-#include <cstdlib>
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
-#define MAX 20000
+
 using namespace std;
 
 int main()
 {
-    char cad[MAX];
-    int t;
+    int t, i;
+    string n;
     cin >> t;
-    cin.ignore();
     while (t--)
     {
-        cin >> cad;
-        int n = strlen(cad);
-        if (cad[n - 1] == '0' || cad[n - 1] == '5')
-            cout << "YES";
+        cin >> n;
+        if (n[n.length() - 1] == '5' or n[n.length() - 1] == '0')
+            cout << "YES" << endl;
         else
-            cout << "NO";
-        cout << endl;
+            cout << "NO" << endl;
     }
-    return 0;
 }

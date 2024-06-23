@@ -2,8 +2,10 @@
 #include <vector>
 #include <queue>
 #include <string.h>
+
 #define pb push_back
 #define MAX 10010
+
 using namespace std;
 
 vector<int> ady[MAX];

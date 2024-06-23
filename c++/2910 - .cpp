@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int MAX = 1000000;
@@ -7,8 +8,6 @@ int num[1000001];
 void generador()
 {
    int k;
-   // clock_t start, end;
-   // start = clock();
    num[0] = 0;
    for (int i = 1; i <= MAX; i++)
    {
@@ -23,8 +22,6 @@ void generador()
       }
       k++;
    }
-   // end = clock();
-   // cout<<(double)(end-start)/CLOCKS_PER_SEC<<endl;
 }
 
 int main()

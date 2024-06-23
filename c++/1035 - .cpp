@@ -1,8 +1,11 @@
 #include <iostream>
 #include <math.h>
 #include <cmath>
+
 #define MOD 1000000
+
 using namespace std;
+
 int sol[MOD + 1];
 
 int resp(int n)

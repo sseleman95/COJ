@@ -2,8 +2,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <algorithm>
+
 #define MAX 100
+
 using namespace std;
+
 int tri[100][100];
 
 int main()

@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <iostream>
+
 #define FOR(i, n) for (__typeof(n) i = 1; i <= (n / 2) + 1; i++)
+
 using namespace std;
 
 int main()

@@ -1,7 +1,9 @@
 #include <cstdio>
+
 char zerones[1000005];
 unsigned int sum[1000005];
 unsigned int cnum, diff, i, j, queries;
+
 void check()
 {
     while (i < j && zerones[i] == zerones[i + 1])

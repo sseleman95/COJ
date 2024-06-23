@@ -1,9 +1,13 @@
 #include <cstdlib>
 #include <iostream>
 #include <math.h>
+
 #define LIM 1001
+
 using namespace std;
+
 int x[LIM], tam, c;
+
 int actualizar(int t)
 {
   c = 1;

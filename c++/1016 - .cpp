@@ -3,8 +3,10 @@
 #include <algorithm>
 #include <stdio.h>
 #include <math.h>
+
 #define MAX 1002
 #define quad(a) ((a) * (a))
+
 using namespace std;
 
 int padre[MAX];

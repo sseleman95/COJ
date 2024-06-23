@@ -1,7 +1,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <string.h>
+
 #define LIM 101
+
 using namespace std;
 
 int main()

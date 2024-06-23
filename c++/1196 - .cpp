@@ -9,6 +9,7 @@ int n;
 int prime[] = {0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1};
 bool disp[20];
 int a[20];
+
 bool candidato(int numero, int index)
 {
   if (index == n - 1)

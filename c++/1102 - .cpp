@@ -3,8 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
-using namespace std;
 #define FOR(i, n) for (i = 0; i < n; i++)
+
+using namespace std;
 
 int main()
 {

@@ -3,7 +3,9 @@
 #include <algorithm>
 #include <string.h>
 #include <string>
+
 #define LIM 7
+
 using namespace std;
 
 char num[LIM];

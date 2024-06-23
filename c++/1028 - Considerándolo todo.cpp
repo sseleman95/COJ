@@ -2,7 +2,9 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+
 #define LIM 100
+
 using namespace std;
 
 int main()

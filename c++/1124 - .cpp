@@ -7,10 +7,10 @@
 #include <string>
 #include <cstdlib>
 
-using namespace std;
-
 #define sz(a) int((a).size())
 #define pb push_back
+
+using namespace std;
 
 typedef long long ll;
 typedef vector<int> vi;
