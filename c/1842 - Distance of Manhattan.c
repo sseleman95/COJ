@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 main()
 {
 	int pruebas, x1, x2, y1, y2, result, tx, ty;

@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 main()
 {
 	int pruebas, pasteles, radio, altura;

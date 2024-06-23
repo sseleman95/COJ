@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 main()
 {
       int casos, ninios, dulces, aux;

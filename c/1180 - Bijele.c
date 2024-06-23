@@ -2,10 +2,10 @@
 
 int main()
 {
-
 	int amt, a, b, c, d, e, f, count = 0;
 
 	int P[6] = {1, 1, 2, 2, 2, 8};
+
 	scanf("%d", &amt);
 
 	while (count < amt)

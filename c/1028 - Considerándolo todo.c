@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 main()
 {
     char n[40], m[40];

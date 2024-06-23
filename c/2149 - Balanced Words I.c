@@ -26,10 +26,6 @@ int main()
 			{
 				CommonLetters++;
 			}
-			else
-			{
-				// do nothing
-			}
 			count++;
 		}
 
@@ -37,10 +33,6 @@ int main()
 			printf("SI\n");
 		else if (CapitalLetters != CommonLetters)
 			printf("NO\n");
-		else
-		{
-			// do nothing
-		}
 	}
 
 	return 0;

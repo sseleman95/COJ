@@ -1,5 +1,3 @@
-// web line to problem : http://coj.uci.cu/24h/problem.xhtml?abb=2148
-
 #include <stdio.h>
 
 int main()

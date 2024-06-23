@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// Function Prototypes
 void selectionSorting(int arr[], int size);
 
 int main()
@@ -20,7 +19,7 @@ int main()
 		for (j = 0; j < 26; j++)
 		{
 			fscanf(in, "%d", &k);
-			// removing the zeros from the input data
+
 			if (k != 0)
 			{
 				num[count] = k;
@@ -42,7 +41,6 @@ int main()
 	return 0;
 }
 
-// Functions
 void selectionSorting(int arr[], int size)
 {
 	int i = 0, y = 0, temp = 0;

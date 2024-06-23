@@ -58,19 +58,12 @@ int main()
 	return 0;
 }
 
-// Functions
-
-// length of a line
 double calculate_distance(double x1, double y1, double x2, double y2)
 {
 	double distance_x = x1 - x2;
 	double distance_y = y1 - y2;
 	return sqrt((distance_x * distance_x) + (distance_y * distance_y));
 }
-
-////////////////////////////////////////////////////////////////////////////////////
-
-// GRAPH FUNCTIONS FOR PRIM
 
 GVertex newGVertex(int name)
 {
@@ -102,11 +95,10 @@ Graph newGraph(int n)
 	return p;
 }
 
-// build graph
 void buildGraph(FILE *in, Graph G)
 {
 	int j, k;
-	double xy[MaxVertices][2]; // used to store the coordinates X and Y
+	double xy[MaxVertices][2];
 
 	for (j = 1; j <= G->numV; j++)
 		for (k = 1; k <= G->numV; k++)
@@ -117,17 +109,15 @@ void buildGraph(FILE *in, Graph G)
 				G->vertex[k].id = k;
 				G->vertex[k].cost = Infinity;
 				G->vertex[k].parent = 0;
-				G->vertex[k].colour = White; // to Black when vertex is added to MST
+				G->vertex[k].colour = White;
 
-				fscanf(in, "%lf %lf", &xy[k][0], &xy[k][1]); // scanning the X and Y values to be used
+				fscanf(in, "%lf %lf", &xy[k][0], &xy[k][1]);
 			}
 			if (j != k)
-				// cal the length of a line to be used as the weight
 				addEdge(j, k, calculate_distance(xy[j][0], xy[j][1], xy[k][0], xy[k][1]), G);
 		}
 }
 
-// AddEdge
 void addEdge(int X, int Y, double weight, Graph G)
 {
 	int j, k;
@@ -166,7 +156,6 @@ void addEdge(int X, int Y, double weight, Graph G)
 	}
 }
 
-// sift up
 void siftUp(Graph G, int heap[], int n, int heapLoc[])
 {
 	int siftItem = heap[n];
@@ -185,7 +174,6 @@ void siftUp(Graph G, int heap[], int n, int heapLoc[])
 	heapLoc[siftItem] = child;
 }
 
-// siftDown
 void siftDown(Graph G, int key, int heap[], int root, int last, int heapLoc[])
 {
 	int smaller = 2 * root;
@@ -205,11 +193,8 @@ void siftDown(Graph G, int key, int heap[], int root, int last, int heapLoc[])
 	heapLoc[key] = root;
 }
 
-// Prim algorithm
 void Prim(Graph G, int s)
 {
-	// perform Prims's algorithm on G starting with vertex s
-
 	int j, heap[MaxVertices + 1], heapLoc[MaxVertices + 1];
 	G->vertex[s].cost = 0;
 	for (j = 1; j <= G->numV; j++)
@@ -225,7 +210,6 @@ void Prim(Graph G, int s)
 		if (G->vertex[u].cost == Infinity)
 			break;
 		G->vertex[u].colour = Black;
-		// reorganize heap after removing top item
 		siftDown(G, heap[heapSize], heap, 1, heapSize - 1, heapLoc);
 		GEdgePtr p = G->vertex[u].firstEdge;
 		while (p != NULL)
@@ -239,9 +223,9 @@ void Prim(Graph G, int s)
 			p = p->nextEdge;
 		}
 		--heapSize;
-	} // end while
+	}
 	printMST(G);
-} // end Prim's
+}
 
 void printMST(Graph G)
 {
@@ -253,5 +237,4 @@ void printMST(Graph G)
 	FILE *out = fopen("output.txt", "w");
 	fprintf(out, "The damage received by Warlock's enemies : %.2f\n", costMST * 5);
 	fclose(out);
-
-} // end printMST
+}

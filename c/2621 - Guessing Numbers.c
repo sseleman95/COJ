@@ -1,4 +1,3 @@
-// GuessingNumbers2621.c
 #include <stdio.h>
 
 int main(void)

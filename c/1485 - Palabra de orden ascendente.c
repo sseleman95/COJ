@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 main()
 {
 	char palabra[1000];

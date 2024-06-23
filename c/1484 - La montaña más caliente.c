@@ -1,21 +1,19 @@
 #include <stdio.h>
-main()
+
+int main()
 {
-	double mont[100];
-	int numMont, pos;
-	scanf("%d", &numMont);
-	double temp;
-	scanf("%lf", &mont[0]);
-	temp = mont[0];
-	pos = 0;
-	for (int i = 1; i < numMont; i++)
-	{
-		scanf("%lf", &mont[i]);
-		if (mont[i] >= temp)
-		{
-			temp = mont[i];
-			pos = i;
-		}
-	}
-	printf("%d\n", pos + 1);
+    int n, i, P;
+    float max, mountain;
+
+    scanf("%d", &n);
+    max = 0;
+    for(i = 1; i <= n; i++){
+        scanf("%f", &mountain);
+        if(mountain >= max){
+            max = mountain;
+            P = i;
+        }
+    }
+    printf("%d\n", P);
+    return 0;
 }
