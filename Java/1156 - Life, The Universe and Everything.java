@@ -1,16 +1,15 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class Main {
+public class coj {
 
   public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    int n = 0;
-    while (true) {
-      n = in.nextInt();
-      if (n != 42) {
-        System.out.println(n);
-      } else {
-        break;
+    Scanner sc = new Scanner(System.in);
+    int l = 0;
+
+    while (l != 42) {
+      l = sc.nextInt();
+      if (l != 42) {
+        System.out.println(l);
       }
     }
   }

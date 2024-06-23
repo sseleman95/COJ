@@ -1,23 +1,27 @@
 import java.util.Scanner;
 
-public class JavaApplication9 {
+public class Speed {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    int n = sc.nextInt();
 
-    for (int i = 0; i < n; i++) {
-      int a = sc.nextInt();
-      int par = 0, imp = 0;
-      for (int j = 0; j < a; j++) {
-        int num = sc.nextInt();
-        if (num % 2 == 0) {
-          par++;
+    int c = sc.nextInt();
+    int n = 0, even = 0, odd = 0, x = 0;
+
+    for (int i = 0; i < c; i++) {
+      n = sc.nextInt();
+
+      for (int j = 0; j < n; j++) {
+        x = sc.nextInt();
+        if (x % 2 == 0) {
+          odd++;
         } else {
-          imp++;
+          even++;
         }
       }
-      System.out.println(par + " even and " + imp + " odd.");
+
+      System.out.println(odd + " even and " + even + " odd.");
+      odd = even = 0;
     }
   }
 }

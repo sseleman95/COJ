@@ -1,31 +1,20 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class COJ1 {
+public class Main {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    boolean[] c1, c2;
-    int i;
-    boolean nocompatibles = false;
 
-    c1 = new boolean[5];
-    c2 = new boolean[5];
+    String cn1 = sc.nextLine();
+    String cn2 = sc.nextLine();
 
-    while (sc.hasNext()) {
-      nocompatibles = false;
-      for (i = 0; i < 5; i++) c1[i] = (sc.nextInt() == 1);
-      for (i = 0; i < 5; i++) c2[i] = (sc.nextInt() == 1);
-      for (i = 0; i < 5; i++) if (c1[i] == c2[i]) {
-        nocompatibles = true;
-        break;
-      }
-      if (nocompatibles) {
-        for (i = 0; i < 5; i++) if (c1[i] == c2[5 - 1 - i]) {
-          nocompatibles = true;
-          break;
-        }
-      }
-      System.out.println((nocompatibles) ? "N" : "Y");
+    int a = Integer.parseInt(cn1.replaceAll(" ", ""));
+    int b = Integer.parseInt(cn2.replaceAll(" ", ""));
+    int c = a + b;
+    if (c == 11111) {
+      System.out.println("Y");
+    } else {
+      System.out.println("N");
     }
   }
 }
