@@ -1,10 +1,12 @@
-//GuessingNumbers2621.c
+// GuessingNumbers2621.c
 #include <stdio.h>
 
-int main(void){
+int main(void)
+{
     int n, cont = 0;
     scanf("%d", &n);
-    while(n){
+    while (n)
+    {
         n /= 2;
         cont++;
     }

@@ -3,12 +3,11 @@
 
 int main()
 {
-    int a,b;
+    int a, b;
 
-    scanf("%i",&a);
+    scanf("%i", &a);
 
-    scanf("%i",&b);
-    a+=b;
-    printf("%d",a);
-
+    scanf("%i", &b);
+    a += b;
+    printf("%d", a);
 }
