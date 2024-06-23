@@ -1,26 +1,25 @@
 import java.util.*;
 
 public class COJ2 {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 
-		int t = sc.nextInt();
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
 
-		for (int i = 0; i < t; i++) {
-			String s = sc.next();
+    int t = sc.nextInt();
 
-			if (s.equals("P=NP")) {
-				System.out.println("skipped");
-			} else {
-				String p[] = s.split(("\\+"));
-				
-				int a = Integer.parseInt(p[0]);
-				int b = Integer.parseInt(p[1]);
+    for (int i = 0; i < t; i++) {
+      String s = sc.next();
 
-				System.out.println(a + b);
+      if (s.equals("P=NP")) {
+        System.out.println("skipped");
+      } else {
+        String p[] = s.split(("\\+"));
 
-			}
+        int a = Integer.parseInt(p[0]);
+        int b = Integer.parseInt(p[1]);
 
-		}
-	}
+        System.out.println(a + b);
+      }
+    }
+  }
 }
