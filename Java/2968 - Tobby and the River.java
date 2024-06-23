@@ -13,4 +13,11 @@ public class main {
         b += l.nextInt();
       }
       if (b % 2 == 0) {
-        System.out.println("
+        System.out.println("Tobby puede cruzar");
+      } else {
+        System.out.println("Tobby no puede cruzar");
+      }
+      a--;
+    }
+  }
+}
