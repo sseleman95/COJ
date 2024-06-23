@@ -1,0 +1,92 @@
+1011 - Army Strength
+1025 - Democracy in Danger
+1042 - Bambú
+1046 - Producto Subsecuencia
+1064 - Despertador
+1177 - Reflexión por grupos
+1324 - Snow White
+1388 - Last Digit of A ^ B
+1165 - Guess the Number
+1159 - A Very Easy Problem!
+1100 - Transform the Expression
+1263 - Big Number
+1004 - Rejilla de desplazamiento
+1160 - Number Steps
+1238 - Factorial Again!
+1268 - Hometask
+1273 - Domino Factory
+1300 - Módulo
+1652 - Hanoi Tower I
+1808 - Hamming Distance
+
+1839 - A Funny Task
+1842 - Distance of Manhattan
+2091 - Counting Task
+2145 - Beauty Contest
+2148 - Quadratic Equations
+2149 - Balanced Words I
+2205 - Contando unos
+2380 - BinaryCheckSum
+2409 - Find the Heterochromatic Index
+2446 - A New Game
+2693 - Rounding Probabilities
+2785 - Who is the Winner?
+2845 - Quadrants
+2904 - Super Sum
+3013 - European Bus
+3051 - Determinando Probabilidades
+3072 - Watermelon
+3614 - Writing More Numbers
+3601 - Writing Numbers
+3508 - Sticky Mosaic
+3496 - Baggage Bringer
+3469 - C1 - Juego de generosidad
+3426 - Suma de lados de triángulos
+3409 - Mujeres valientes
+3406 - Ayuda con la Tarea
+3375 - Las Frases de Naebbirac
+3140 - Ordenamiento simple
+3084 - Buscando su Camino
+3083 - Buscando Ayuda para la Bestia
+3662 - Favoritos de la Federación
+3757 - I Love Divisors
+3770 - Median of Letters
+3771 - Divisors and Coprimes
+3772 - The Refund
+3782 - Cacho
+3795 - Números DPA
+3802 - Jesane y la Secuencia
+3803 - Run, Toby, Ruun!
+3821 - Coco Olympiad
+3827 - Tuna
+3831 - Cryptographer’s Conundrum
+3901 - C4 - Grave 
+3932 - Regalo para el Profesor Farnsworth
+3165 - Problem About Lines
+1211 - Isosceles Triangles
+1847 - Claustrophobic Cows
+1080 - El par de puntos más cercanos
+1081 - A Orchard Planting
+3408 - Área Segura
+1158 - Least Power
+1159 - A Very Easy Problem!-------------
+1238 - Factorial Again!
+1625 - Day of the Week--------------
+2183 - Parity Words 
+1028 - All in All
+1059 - Paridad Numérica----------
+1132 - Divisor Summation
+1164 - Heptadecimal Numbers
+1176 - Ternary
+1180 - Bijele
+1188 - Cow Multiplication
+1244 - Flowers Flourish from France
+1268 - Hometask
+1278 - Judging Olympia
+1324 - Snow White
+1825 - Creating Passwords I
+1839 - A Funny Task
+1840 - Cadenas quebradas
+1888 - Evil Numbers----
+1905 - Creating Passwords II
+2012 - Challenging Words
