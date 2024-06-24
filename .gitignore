@@ -81,6 +81,7 @@ nbbuild/
 dist/
 nbdist/
 nbactions.xml
+!COJ-Engine-Old/nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 
